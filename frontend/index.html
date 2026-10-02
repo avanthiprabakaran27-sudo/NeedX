@@ -1,0 +1,1580 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <meta
+        name="description"
+        content="NeedX connects your real-world needs with the right service providers, shops and professionals."
+    >
+
+    <meta
+        name="theme-color"
+        content="#0f172a"
+    >
+
+    <title>NeedX | Find the Right Help</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <!-- =========================
+         NAVBAR
+    ========================== -->
+
+    <header class="navbar">
+
+        <div class="nav-container">
+
+            <a href="#" class="brand" onclick="showHome()">
+                <span class="brand-icon">🌍</span>
+                <span>Need<span class="brand-x">X</span></span>
+            </a>
+
+            <nav class="nav-links">
+
+                <button
+                    class="nav-link active"
+                    onclick="showHome()"
+                    id="navHome"
+                >
+                    Home
+                </button>
+
+                <button
+                    class="nav-link"
+                    onclick="showDashboard()"
+                    id="navDashboard"
+                >
+                    Dashboard
+                </button>
+
+                <button
+                    class="nav-link"
+                    onclick="showSaved()"
+                    id="navSaved"
+                >
+                    Saved
+                </button>
+
+                <button
+                    class="nav-link"
+                    onclick="showNotifications()"
+                    id="navNotifications"
+                >
+                    Notifications
+                    <span
+                        class="notification-badge hidden"
+                        id="notificationBadge"
+                    >
+                        0
+                    </span>
+                </button>
+
+            </nav>
+
+            <div class="nav-actions">
+
+                <button
+                    class="location-btn"
+                    onclick="detectLocation()"
+                    title="Use my location"
+                >
+                    📍
+                    <span id="locationText">Location</span>
+                </button>
+
+                <button
+                    class="login-btn"
+                    onclick="openAuthModal()"
+                    id="authButton"
+                >
+                    Login
+                </button>
+
+                <button
+                    class="profile-btn hidden"
+                    onclick="toggleProfileMenu()"
+                    id="profileButton"
+                >
+                    <span id="profileInitial">U</span>
+                </button>
+
+                <div
+                    class="profile-menu hidden"
+                    id="profileMenu"
+                >
+                    <div class="profile-menu-header">
+                        <strong id="menuUserName">
+                            User
+                        </strong>
+                        <span id="menuUserEmail">
+                            user@example.com
+                        </span>
+                    </div>
+
+                    <button onclick="showDashboard()">
+                        👤 My Dashboard
+                    </button>
+
+                    <button onclick="showSaved()">
+                        ❤️ Saved Providers
+                    </button>
+
+                    <button onclick="showNotifications()">
+                        🔔 Notifications
+                    </button>
+
+                    <button onclick="logout()" class="logout-item">
+                        🚪 Logout
+                    </button>
+                </div>
+
+            </div>
+
+        </div>
+
+    </header>
+
+
+    <!-- =========================
+         MAIN APPLICATION
+    ========================== -->
+
+    <main id="app">
+
+        <!-- =========================
+             HOME
+        ========================== -->
+
+        <section id="homePage" class="page active-page">
+
+            <!-- HERO -->
+
+            <section class="hero">
+
+                <div class="hero-content">
+
+                    <div class="hero-badge">
+                        ✨ Smart Real-World Service Finder
+                    </div>
+
+                    <h1>
+                        Tell us what you need.
+                        <span>We'll find the right help.</span>
+                    </h1>
+
+                    <p class="hero-description">
+                        Describe your problem naturally.
+                        NeedX understands your need and connects
+                        you with suitable shops, professionals and
+                        service providers near you.
+                    </p>
+
+
+                    <!-- SMART SEARCH -->
+
+                    <div class="need-search-card">
+
+                        <div class="search-header">
+
+                            <div>
+                                <span class="search-label">
+                                    What do you need?
+                                </span>
+
+                                <span class="search-hint">
+                                    Describe it in your own words
+                                </span>
+                            </div>
+
+                            <span class="ai-indicator">
+                                ✨ Smart Analysis
+                            </span>
+
+                        </div>
+
+
+                        <textarea
+                            id="needInput"
+                            class="need-input"
+                            placeholder="Example: My iPhone display is broken and I need it repaired today..."
+                            rows="4"
+                        ></textarea>
+
+
+                        <div class="search-bottom">
+
+                            <div class="search-tools">
+
+                                <button
+                                    class="tool-btn"
+                                    onclick="detectLocation()"
+                                >
+                                    📍
+                                    <span id="searchLocation">
+                                        Add location
+                                    </span>
+                                </button>
+
+                                <button
+                                    class="tool-btn"
+                                    onclick="useExample('phone')"
+                                >
+                                    📱 Phone Repair
+                                </button>
+
+                                <button
+                                    class="tool-btn"
+                                    onclick="useExample('laptop')"
+                                >
+                                    💻 Laptop
+                                </button>
+
+                                <button
+                                    class="tool-btn"
+                                    onclick="useExample('home')"
+                                >
+                                    🏠 Home Service
+                                </button>
+
+                            </div>
+
+                            <button
+                                class="find-btn"
+                                onclick="analyzeNeed()"
+                                id="findButton"
+                            >
+                                <span>Find Help</span>
+                                <span>→</span>
+                            </button>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- TRUST ITEMS -->
+
+                    <div class="trust-row">
+
+                        <div class="trust-item">
+                            <span>✓</span>
+                            Smart Matching
+                        </div>
+
+                        <div class="trust-item">
+                            <span>✓</span>
+                            Price Comparison
+                        </div>
+
+                        <div class="trust-item">
+                            <span>✓</span>
+                            Local Providers
+                        </div>
+
+                        <div class="trust-item">
+                            <span>✓</span>
+                            Real Requests
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+
+            <!-- QUICK CATEGORIES -->
+
+            <section class="categories-section">
+
+                <div class="section-heading">
+
+                    <div>
+                        <span class="eyebrow">
+                            EXPLORE SERVICES
+                        </span>
+
+                        <h2>
+                            What can we help you with?
+                        </h2>
+                    </div>
+
+                    <p>
+                        Choose a category or simply describe
+                        your need above.
+                    </p>
+
+                </div>
+
+
+                <div class="category-grid">
+
+                    <button
+                        class="category-card"
+                        onclick="useCategory('phone repair')"
+                    >
+                        <span class="category-icon">📱</span>
+                        <strong>Phone Repair</strong>
+                        <small>Screen, battery & hardware</small>
+                    </button>
+
+                    <button
+                        class="category-card"
+                        onclick="useCategory('laptop repair')"
+                    >
+                        <span class="category-icon">💻</span>
+                        <strong>Laptop & Computer</strong>
+                        <small>Repair, software & hardware</small>
+                    </button>
+
+                    <button
+                        class="category-card"
+                        onclick="useCategory('home service')"
+                    >
+                        <span class="category-icon">🏠</span>
+                        <strong>Home Services</strong>
+                        <small>Plumbing, electrical & more</small>
+                    </button>
+
+                    <button
+                        class="category-card"
+                        onclick="useCategory('vehicle service')"
+                    >
+                        <span class="category-icon">🚗</span>
+                        <strong>Vehicle Services</strong>
+                        <small>Repair, service & maintenance</small>
+                    </button>
+
+                    <button
+                        class="category-card"
+                        onclick="useCategory('beauty service')"
+                    >
+                        <span class="category-icon">💇</span>
+                        <strong>Beauty & Personal</strong>
+                        <small>Salon, grooming & care</small>
+                    </button>
+
+                    <button
+                        class="category-card"
+                        onclick="useCategory('cleaning service')"
+                    >
+                        <span class="category-icon">🧹</span>
+                        <strong>Cleaning</strong>
+                        <small>Home & office cleaning</small>
+                    </button>
+
+                    <button
+                        class="category-card"
+                        onclick="useCategory('electronics repair')"
+                    >
+                        <span class="category-icon">🔧</span>
+                        <strong>Electronics</strong>
+                        <small>Devices & appliances</small>
+                    </button>
+
+                    <button
+                        class="category-card"
+                        onclick="useCategory('other service')"
+                    >
+                        <span class="category-icon">✨</span>
+                        <strong>Something Else</strong>
+                        <small>Tell us what you need</small>
+                    </button>
+
+                </div>
+
+            </section>
+
+
+            <!-- HOW IT WORKS -->
+
+            <section class="how-section">
+
+                <div class="section-heading centered">
+
+                    <span class="eyebrow">
+                        SIMPLE PROCESS
+                    </span>
+
+                    <h2>
+                        From need to solution
+                    </h2>
+
+                    <p>
+                        NeedX makes finding real-world help simple.
+                    </p>
+
+                </div>
+
+
+                <div class="steps-grid">
+
+                    <div class="step-card">
+
+                        <div class="step-number">
+                            01
+                        </div>
+
+                        <div class="step-icon">
+                            💬
+                        </div>
+
+                        <h3>
+                            Tell your need
+                        </h3>
+
+                        <p>
+                            Explain your problem naturally.
+                            No complicated forms.
+                        </p>
+
+                    </div>
+
+
+                    <div class="step-card">
+
+                        <div class="step-number">
+                            02
+                        </div>
+
+                        <div class="step-icon">
+                            🧠
+                        </div>
+
+                        <h3>
+                            NeedX understands
+                        </h3>
+
+                        <p>
+                            Your requirement is analyzed and
+                            converted into a service category.
+                        </p>
+
+                    </div>
+
+
+                    <div class="step-card">
+
+                        <div class="step-number">
+                            03
+                        </div>
+
+                        <div class="step-icon">
+                            🎯
+                        </div>
+
+                        <h3>
+                            Find matches
+                        </h3>
+
+                        <p>
+                            Compare suitable providers using
+                            price, rating, distance and availability.
+                        </p>
+
+                    </div>
+
+
+                    <div class="step-card">
+
+                        <div class="step-number">
+                            04
+                        </div>
+
+                        <div class="step-icon">
+                            🤝
+                        </div>
+
+                        <h3>
+                            Connect & book
+                        </h3>
+
+                        <p>
+                            Contact the provider or send a service
+                            request directly.
+                        </p>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+
+            <!-- WHY NEEDX -->
+
+            <section class="why-section">
+
+                <div class="why-content">
+
+                    <div class="why-text">
+
+                        <span class="eyebrow">
+                            WHY NEEDX?
+                        </span>
+
+                        <h2>
+                            Stop searching everywhere.
+                            Start with your need.
+                        </h2>
+
+                        <p>
+                            Instead of searching through dozens of
+                            websites, directories and social media
+                            pages, describe what you actually need.
+                            NeedX organizes the useful information
+                            around that need.
+                        </p>
+
+
+                        <div class="feature-list">
+
+                            <div class="feature-item">
+                                <span>✓</span>
+                                <div>
+                                    <strong>Need-based discovery</strong>
+                                    <p>
+                                        Search using normal language.
+                                    </p>
+                                </div>
+                            </div>
+
+                            <div class="feature-item">
+                                <span>✓</span>
+                                <div>
+                                    <strong>Compare before contacting</strong>
+                                    <p>
+                                        See pricing, ratings and estimated time.
+                                    </p>
+                                </div>
+                            </div>
+
+                            <div class="feature-item">
+                                <span>✓</span>
+                                <div>
+                                    <strong>Local connections</strong>
+                                    <p>
+                                        Find providers around your location.
+                                    </p>
+                                </div>
+                            </div>
+
+                            <div class="feature-item">
+                                <span>✓</span>
+                                <div>
+                                    <strong>Track your requests</strong>
+                                    <p>
+                                        Keep your service activity organized.
+                                    </p>
+                                </div>
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="why-visual">
+
+                        <div class="visual-card">
+
+                            <div class="visual-top">
+                                <span class="mini-dot"></span>
+                                NeedX Matching
+                            </div>
+
+                            <div class="visual-need">
+                                📱 iPhone display repair
+                            </div>
+
+                            <div class="match-line">
+                                <span></span>
+                            </div>
+
+                            <div class="visual-result">
+
+                                <div class="visual-avatar">
+                                    📱
+                                </div>
+
+                                <div>
+                                    <strong>
+                                        Verified Phone Service
+                                    </strong>
+
+                                    <small>
+                                        ⭐ 4.8 · 1.2 km
+                                    </small>
+                                </div>
+
+                                <b>
+                                    ₹2,499
+                                </b>
+
+                            </div>
+
+                            <div class="visual-result">
+
+                                <div class="visual-avatar">
+                                    🔧
+                                </div>
+
+                                <div>
+                                    <strong>
+                                        Mobile Care Center
+                                    </strong>
+
+                                    <small>
+                                        ⭐ 4.6 · 2.1 km
+                                    </small>
+                                </div>
+
+                                <b>
+                                    ₹2,700
+                                </b>
+
+                            </div>
+
+                            <div class="visual-status">
+                                ✓ 3 suitable providers found
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+        </section>
+
+
+        <!-- =========================
+             RESULTS PAGE
+        ========================== -->
+
+        <section
+            id="resultsPage"
+            class="page"
+        >
+
+            <div class="page-container">
+
+                <div class="results-top">
+
+                    <div>
+
+                        <button
+                            class="back-btn"
+                            onclick="showHome()"
+                        >
+                            ← Back
+                        </button>
+
+                        <span class="eyebrow">
+                            SMART MATCHES
+                        </span>
+
+                        <h1 id="resultsTitle">
+                            Finding the right help...
+                        </h1>
+
+                        <p id="resultsSubtitle">
+                            Comparing suitable providers near you.
+                        </p>
+
+                    </div>
+
+                    <button
+                        class="filter-btn"
+                        onclick="toggleFilters()"
+                    >
+                        ⚙ Filters
+                    </button>
+
+                </div>
+
+
+                <!-- ANALYSIS SUMMARY -->
+
+                <div
+                    class="analysis-card hidden"
+                    id="analysisCard"
+                >
+
+                    <div class="analysis-icon">
+                        🧠
+                    </div>
+
+                    <div class="analysis-content">
+
+                        <span>
+                            NEEDX ANALYSIS
+                        </span>
+
+                        <h3 id="analysisSummary">
+                            Understanding your request...
+                        </h3>
+
+                        <div class="analysis-tags">
+
+                            <span id="analysisCategory">
+                                Category
+                            </span>
+
+                            <span id="analysisProblem">
+                                Problem
+                            </span>
+
+                            <span id="analysisUrgency">
+                                Normal
+                            </span>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <!-- FILTERS -->
+
+                <div
+                    class="filters-panel hidden"
+                    id="filtersPanel"
+                >
+
+                    <div class="filter-group">
+
+                        <label>
+                            Maximum distance
+                        </label>
+
+                        <select id="distanceFilter">
+                            <option value="100">Any distance</option>
+                            <option value="2">Within 2 km</option>
+                            <option value="5">Within 5 km</option>
+                            <option value="10">Within 10 km</option>
+                            <option value="25">Within 25 km</option>
+                        </select>
+
+                    </div>
+
+                    <div class="filter-group">
+
+                        <label>
+                            Minimum rating
+                        </label>
+
+                        <select id="ratingFilter">
+                            <option value="0">Any rating</option>
+                            <option value="4">4.0+</option>
+                            <option value="4.5">4.5+</option>
+                            <option value="4.8">4.8+</option>
+                        </select>
+
+                    </div>
+
+                    <div class="filter-group">
+
+                        <label>
+                            Sort by
+                        </label>
+
+                        <select id="sortFilter">
+                            <option value="match">Best match</option>
+                            <option value="rating">Highest rating</option>
+                            <option value="distance">Nearest</option>
+                            <option value="price">Lowest price</option>
+                        </select>
+
+                    </div>
+
+                    <button
+                        class="apply-filter-btn"
+                        onclick="applyFilters()"
+                    >
+                        Apply Filters
+                    </button>
+
+                </div>
+
+
+                <!-- RESULT META -->
+
+                <div class="result-meta">
+
+                    <span id="resultCount">
+                        0 providers
+                    </span>
+
+                    <span id="searchStatus">
+                        Searching...
+                    </span>
+
+                </div>
+
+
+                <!-- PROVIDERS -->
+
+                <div
+                    class="providers-grid"
+                    id="providersGrid"
+                >
+                    <!-- Provider cards injected by JS -->
+                </div>
+
+
+                <!-- NO RESULTS -->
+
+                <div
+                    class="empty-state hidden"
+                    id="noResults"
+                >
+
+                    <div class="empty-icon">
+                        🔍
+                    </div>
+
+                    <h2>
+                        No suitable providers found
+                    </h2>
+
+                    <p>
+                        Try changing your location,
+                        search description or filters.
+                    </p>
+
+                    <button
+                        class="primary-btn"
+                        onclick="showHome()"
+                    >
+                        Try another need
+                    </button>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =========================
+             PROVIDER DETAIL PAGE
+        ========================== -->
+
+        <section
+            id="providerPage"
+            class="page"
+        >
+
+            <div class="page-container">
+
+                <button
+                    class="back-btn"
+                    onclick="showResults()"
+                >
+                    ← Back to results
+                </button>
+
+                <div
+                    id="providerDetail"
+                    class="provider-detail"
+                >
+                    <!-- Provider details injected by JS -->
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =========================
+             DASHBOARD
+        ========================== -->
+
+        <section
+            id="dashboardPage"
+            class="page"
+        >
+
+            <div class="page-container">
+
+                <div class="dashboard-header">
+
+                    <div>
+
+                        <span class="eyebrow">
+                            YOUR NEEDX
+                        </span>
+
+                        <h1>
+                            Dashboard
+                        </h1>
+
+                        <p>
+                            Manage your requests, saved providers
+                            and service activity.
+                        </p>
+
+                    </div>
+
+                    <button
+                        class="primary-btn"
+                        onclick="showHome()"
+                    >
+                        + Find a Service
+                    </button>
+
+                </div>
+
+
+                <div
+                    class="dashboard-stats"
+                    id="dashboardStats"
+                >
+
+                    <div class="stat-card">
+                        <span>📋</span>
+                        <div>
+                            <small>Total Requests</small>
+                            <strong id="statRequests">0</strong>
+                        </div>
+                    </div>
+
+                    <div class="stat-card">
+                        <span>⏳</span>
+                        <div>
+                            <small>Active Requests</small>
+                            <strong id="statActive">0</strong>
+                        </div>
+                    </div>
+
+                    <div class="stat-card">
+                        <span>❤️</span>
+                        <div>
+                            <small>Saved Providers</small>
+                            <strong id="statSaved">0</strong>
+                        </div>
+                    </div>
+
+                    <div class="stat-card">
+                        <span>🔔</span>
+                        <div>
+                            <small>Notifications</small>
+                            <strong id="statNotifications">0</strong>
+                        </div>
+                    </div>
+
+                </div>
+
+
+                <div class="dashboard-grid">
+
+                    <div class="dashboard-main">
+
+                        <div class="panel">
+
+                            <div class="panel-header">
+
+                                <div>
+                                    <h2>
+                                        Recent Requests
+                                    </h2>
+
+                                    <p>
+                                        Your latest service activity
+                                    </p>
+                                </div>
+
+                            </div>
+
+                            <div
+                                id="recentBookings"
+                                class="booking-list"
+                            >
+                                <!-- injected -->
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+                    <aside class="dashboard-side">
+
+                        <div class="panel">
+
+                            <div class="panel-header">
+                                <h3>
+                                    Quick Actions
+                                </h3>
+                            </div>
+
+                            <div class="quick-actions">
+
+                                <button onclick="showHome()">
+                                    🔎 Find a Service
+                                </button>
+
+                                <button onclick="showSaved()">
+                                    ❤️ Saved Providers
+                                </button>
+
+                                <button onclick="showNotifications()">
+                                    🔔 Notifications
+                                </button>
+
+                            </div>
+
+                        </div>
+
+                    </aside>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =========================
+             SAVED PAGE
+        ========================== -->
+
+        <section
+            id="savedPage"
+            class="page"
+        >
+
+            <div class="page-container">
+
+                <div class="page-title">
+
+                    <span class="eyebrow">
+                        YOUR COLLECTION
+                    </span>
+
+                    <h1>
+                        Saved Providers
+                    </h1>
+
+                    <p>
+                        Quickly access providers you may want
+                        to contact again.
+                    </p>
+
+                </div>
+
+                <div
+                    class="providers-grid"
+                    id="savedProvidersGrid"
+                >
+                </div>
+
+                <div
+                    class="empty-state hidden"
+                    id="savedEmpty"
+                >
+
+                    <div class="empty-icon">
+                        ❤️
+                    </div>
+
+                    <h2>
+                        No saved providers yet
+                    </h2>
+
+                    <p>
+                        Save providers while browsing results
+                        to find them quickly later.
+                    </p>
+
+                    <button
+                        class="primary-btn"
+                        onclick="showHome()"
+                    >
+                        Find Providers
+                    </button>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =========================
+             NOTIFICATIONS PAGE
+        ========================== -->
+
+        <section
+            id="notificationsPage"
+            class="page"
+        >
+
+            <div class="page-container">
+
+                <div class="page-title">
+
+                    <span class="eyebrow">
+                        UPDATES
+                    </span>
+
+                    <h1>
+                        Notifications
+                    </h1>
+
+                    <p>
+                        Updates about your requests and activity.
+                    </p>
+
+                </div>
+
+                <div
+                    class="notifications-list"
+                    id="notificationsList"
+                >
+                </div>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <!-- =========================
+         AUTH MODAL
+    ========================== -->
+
+    <div
+        class="modal-overlay hidden"
+        id="authModal"
+    >
+
+        <div class="modal auth-modal">
+
+            <button
+                class="modal-close"
+                onclick="closeAuthModal()"
+            >
+                ×
+            </button>
+
+            <div class="auth-header">
+
+                <div class="auth-logo">
+                    🌍
+                </div>
+
+                <h2 id="authTitle">
+                    Welcome to NeedX
+                </h2>
+
+                <p id="authSubtitle">
+                    Sign in to manage your service requests.
+                </p>
+
+            </div>
+
+
+            <!-- LOGIN -->
+
+            <form
+                id="loginForm"
+                onsubmit="login(event)"
+            >
+
+                <div class="form-group">
+
+                    <label>Email</label>
+
+                    <input
+                        type="email"
+                        id="loginEmail"
+                        placeholder="you@example.com"
+                        required
+                    >
+
+                </div>
+
+                <div class="form-group">
+
+                    <label>Password</label>
+
+                    <input
+                        type="password"
+                        id="loginPassword"
+                        placeholder="••••••••"
+                        required
+                    >
+
+                </div>
+
+                <button
+                    type="submit"
+                    class="primary-btn full-width"
+                >
+                    Sign In
+                </button>
+
+                <p class="auth-switch">
+                    New to NeedX?
+                    <button
+                        type="button"
+                        onclick="showRegisterForm()"
+                    >
+                        Create account
+                    </button>
+                </p>
+
+            </form>
+
+
+            <!-- REGISTER -->
+
+            <form
+                id="registerForm"
+                class="hidden"
+                onsubmit="register(event)"
+            >
+
+                <div class="form-group">
+
+                    <label>Name</label>
+
+                    <input
+                        type="text"
+                        id="registerName"
+                        placeholder="Your name"
+                        required
+                    >
+
+                </div>
+
+                <div class="form-group">
+
+                    <label>Email</label>
+
+                    <input
+                        type="email"
+                        id="registerEmail"
+                        placeholder="you@example.com"
+                        required
+                    >
+
+                </div>
+
+                <div class="form-group">
+
+                    <label>Password</label>
+
+                    <input
+                        type="password"
+                        id="registerPassword"
+                        placeholder="Minimum 6 characters"
+                        minlength="6"
+                        required
+                    >
+
+                </div>
+
+                <button
+                    type="submit"
+                    class="primary-btn full-width"
+                >
+                    Create Account
+                </button>
+
+                <p class="auth-switch">
+                    Already have an account?
+                    <button
+                        type="button"
+                        onclick="showLoginForm()"
+                    >
+                        Sign in
+                    </button>
+                </p>
+
+            </form>
+
+
+            <div
+                id="authMessage"
+                class="form-message hidden"
+            ></div>
+
+        </div>
+
+    </div>
+
+
+    <!-- =========================
+         BOOKING MODAL
+    ========================== -->
+
+    <div
+        class="modal-overlay hidden"
+        id="bookingModal"
+    >
+
+        <div class="modal booking-modal">
+
+            <button
+                class="modal-close"
+                onclick="closeBookingModal()"
+            >
+                ×
+            </button>
+
+            <div class="modal-heading">
+
+                <span class="modal-icon">
+                    📋
+                </span>
+
+                <div>
+
+                    <h2>
+                        Send Service Request
+                    </h2>
+
+                    <p id="bookingProviderName">
+                        Provider
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <form
+                onsubmit="submitBooking(event)"
+            >
+
+                <div class="form-group">
+
+                    <label>
+                        Describe what you need
+                    </label>
+
+                    <textarea
+                        id="bookingDescription"
+                        rows="4"
+                        placeholder="Add any important details..."
+                        required
+                    ></textarea>
+
+                </div>
+
+
+                <div class="form-row">
+
+                    <div class="form-group">
+
+                        <label>
+                            Preferred date
+                        </label>
+
+                        <input
+                            type="date"
+                            id="bookingDate"
+                        >
+
+                    </div>
+
+                    <div class="form-group">
+
+                        <label>
+                            Preferred time
+                        </label>
+
+                        <input
+                            type="time"
+                            id="bookingTime"
+                        >
+
+                    </div>
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label>
+                        Service location
+                    </label>
+
+                    <input
+                        type="text"
+                        id="bookingLocation"
+                        placeholder="Your location"
+                    >
+
+                </div>
+
+
+                <button
+                    type="submit"
+                    class="primary-btn full-width"
+                >
+                    Send Request
+                </button>
+
+                <div
+                    id="bookingMessage"
+                    class="form-message hidden"
+                ></div>
+
+            </form>
+
+        </div>
+
+    </div>
+
+
+    <!-- =========================
+         LOADING OVERLAY
+    ========================== -->
+
+    <div
+        id="loadingOverlay"
+        class="loading-overlay hidden"
+    >
+
+        <div class="loading-box">
+
+            <div class="spinner"></div>
+
+            <h3 id="loadingTitle">
+                Finding the right help...
+            </h3>
+
+            <p id="loadingText">
+                Analyzing your requirement.
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <!-- =========================
+         TOAST
+    ========================== -->
+
+    <div
+        id="toast"
+        class="toast"
+    >
+
+        <span id="toastIcon">
+            ✓
+        </span>
+
+        <span id="toastMessage">
+            Done
+        </span>
+
+    </div>
+
+
+    <!-- =========================
+         FOOTER
+    ========================== -->
+
+    <footer class="footer">
+
+        <div class="footer-container">
+
+            <div class="footer-brand">
+
+                <div class="brand">
+                    <span class="brand-icon">🌍</span>
+                    <span>Need<span class="brand-x">X</span></span>
+                </div>
+
+                <p>
+                    From your need to the right real-world solution.
+                </p>
+
+            </div>
+
+
+            <div class="footer-links">
+
+                <div>
+                    <strong>NeedX</strong>
+
+                    <button onclick="showHome()">
+                        Home
+                    </button>
+
+                    <button onclick="showDashboard()">
+                        Dashboard
+                    </button>
+
+                    <button onclick="showSaved()">
+                        Saved
+                    </button>
+                </div>
+
+                <div>
+                    <strong>For Providers</strong>
+
+                    <button onclick="showProviderRegistrationInfo()">
+                        Join NeedX
+                    </button>
+
+                    <button onclick="showProviderRegistrationInfo()">
+                        Offer a Service
+                    </button>
+                </div>
+
+                <div>
+                    <strong>Support</strong>
+
+                    <button onclick="showHome()">
+                        Help Center
+                    </button>
+
+                    <button onclick="showHome()">
+                        Safety
+                    </button>
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <div class="footer-bottom">
+
+            <span>
+                © 2026 NeedX. All rights reserved.
+            </span>
+
+            <span>
+                Built for real-world needs.
+            </span>
+
+        </div>
+
+    </footer>
+
+
+    <script src="script.js"></script>
+
+</body>
+</html>
